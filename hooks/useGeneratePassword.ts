@@ -23,6 +23,8 @@ const useGeneratePassword = (settings: GeneratorSettings) => {
 
     const refreshPassword = useCallback(() => {
         let array: string[] = [...chars];
+
+        if (settings.length > 30) settings.length = 30;
         if (settings.symbols) array.push(...symbols);
         if (settings.excludeSimilar) array = array.filter(i => !similarChars.includes(i));
         if (settings.uppercase) {
